@@ -1,4 +1,7 @@
 class Test{
 
 print("eat");
+
+print("11");
+print("cat");
 }
