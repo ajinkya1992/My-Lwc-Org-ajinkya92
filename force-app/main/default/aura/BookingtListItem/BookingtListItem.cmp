@@ -1,0 +1,22 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="rowIndex" type="String"/>
+    
+    <aura:attribute name="bookactRec" type="Show_Booking__c" /> 
+    <aura:registerEvent name="deletebooking" type="c:DeleteRow"/>
+    <aura:registerEvent name="chkboxCal" type="c:chckboxCalculation" />
+    
+    <tr  class="slds-text-title_caps" >
+        <td class="borderCls" ><a> {!v.rowIndex + 1}</a></td>
+        <td class="borderCls" ><ui:inputText  class="slds-input" value="{!v.bookactRec.book.Description__c}"/></td>
+        
+        <td class="borderCls" ><ui:inputText class="slds-input" value="{!v.bookactRec.book.Amount__c}"/></td>
+        <td class="borderCls" > <ui:inputCheckbox  change="{!c.calOnTabl}"  aura:id="checkbox" value="{!v.bookactRec.isselectbook}"/></td>
+        <td class="borderCls" ><ui:inputText class="slds-input" value="{!v.bookactRec.book.Calculated__c}"/></td>
+        <td>  <button  class="slds-button slds-button_destructive" onclick="{!c.DeleteRow1}"> Delete </button> </td>
+       
+        
+    </tr>
+    
+    
+</aura:component>

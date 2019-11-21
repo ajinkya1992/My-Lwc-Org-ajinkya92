@@ -1,0 +1,169 @@
+<aura:component controller="SurveyQuestion" implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global" >
+    <aura:attribute name="QuestionList" type="List" default="[]"/>
+    <aura:attribute name="options" type="List"  />
+    <aura:attribute name="hideshowMul" type="Boolean" default="false" />
+    <aura:attribute name="hideshowSingle" type="Boolean" default="false" />
+    <aura:attribute name="namesubId" type="List" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <!--<aura:attribute name="listOfAllAccounts" type="list"/--> 
+    <aura:attribute name="PaginationList" type="list"/> 
+    <aura:attribute name="selectedCount" type="integer" default="0"
+                    description="selected Records Count"/>
+    <aura:attribute name="startPage" type="Integer" />
+    <aura:attribute name="endPage" type="Integer"/>
+    <aura:attribute name="totalRecordsCount" type="Integer"/>
+    <aura:attribute name="pageSize" type="Integer" default="1"
+                    description="number of records to be display on per page"/>
+    <aura:attribute name="currentPage" type="integer" default="1"/>
+    <aura:attribute name="totalPagesCount" type="integer"/>
+    <aura:attribute name="bNoRecordsFound" type="boolean"/>
+
+    
+    
+    
+    <div class="slds-box" style="margin-left: 3px;width: 84rem;background-color: rgb(141, 184, 228);">
+        <aura:iteration items="{!v.QuestionList}" var="ques" indexVar="index"> 
+            
+            
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_2-of-12">
+                    <span></span>
+                </div>
+                
+                <div class="slds-col slds-size_8-of-12 ">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <tbody>
+                            <tr>
+                                <th scope="row">     
+                                    <p class="slds-p-horizontal_small">
+                                         
+                                    </p>
+                                    <aura:if isTrue="{!ques.queObj.Question_Type__c !='Sub Question'}"> 
+                                        <p class="slds-p-horizontal_small"> Q {!index+1}  <ui:outputText aura:id="oTextarea" value="{!ques.queObj.Questions__c}"/></p>
+                                    </aura:if> 
+                                    <div style=" margin-bottom: 20px;"></div>   
+                                    <aura:iteration items="{!ques.ansOpt}" var="q"> 
+                                        
+                                        <p class="slds-p-horizontal_small">  <aura:if isTrue="{!ques.queObj.Question_Type__c !='Sub Question'}"> 
+                                            <aura:if isTrue="{!q.Answer_Type__c =='Single Select'}">
+                                                <ui:inputRadio aura:id="r0" text="{!q.Id}" name="{!ques.queObj.Name}"  label="{!q.Answe__c}" value="{!q.select}" change="{!c.getval}"/>
+                                            </aura:if> 
+                                            </aura:if>
+                                        </p>
+                                        <p class="slds-p-horizontal_small">
+                                            <aura:if isTrue="{!ques.queObj.Question_Type__c !='Sub Question'}"> 
+                                                <aura:if isTrue="{!q.Answer_Type__c =='Multi select'}">
+                                                    <ui:inputCheckbox aura:id="checkbox" text="{!q.Id}" name="{!ques.queObj.Name}" label="{!q.Answe__c}" change="{!c.getval}"/>
+                                                </aura:if>
+                                            </aura:if>
+                                        </p>
+                                        <p class="slds-p-horizontal_small">
+                                            <aura:if isTrue="{!ques.queObj.Question_Type__c !='Sub Question'}"> 
+                                                <aura:if isTrue="{!q.Answer_Type__c =='Rating'}">
+                                                    <lightning:radioGroup name="{!ques.queObj.Name}"
+                                                                          label=""
+                                                                          options="{!q.q}"
+                                                                          value="{!v.value}"
+                                                                          type="button"
+                                                                          onchange="{!c.getval1}"
+                                                                          
+                                                                          />
+                                                </aura:if>
+                                            </aura:if>
+                                        </p>
+                                        <p class="slds-p-horizontal_small">
+                                            <aura:if isTrue="{!ques.queObj.Question_Type__c !='Sub Question'}">
+                                                <aura:if isTrue="{!q.Answer_Type__c  =='Text'}">
+                                                    
+                                                    <lightning:textarea  label="{!q.Answe__c}" placeholder="Type here..." aura:id="text1" value=""  />
+                                                    
+                                                </aura:if>   
+                                            </aura:if> 
+                                        </p>
+                                    </aura:iteration>
+                                    
+                                    <div style=" margin-bottom: 30px;"></div>
+                                    <aura:if isTrue="{!v.hideshowMul}"> 
+                                        
+                                        <aura:iteration items="{!ques.QueList}" var="q1">
+                                            
+                                            <p class="slds-p-horizontal_small">   <ui:outputText aura:id="oTextarea" value="{!q1.queObj.Questions__c}"/></p>
+                                            <aura:iteration items="{!q1.ansOpt}" var="q3"> 
+                                                <p class="slds-p-horizontal_small">
+                                                    <aura:if isTrue="{!q3.Answer_Type__c =='Single Select'}">
+                                                        <ui:inputRadio aura:id="r0"  text="{!q3.Id}"  value="{!q3.select}" name="{!q1.Name}" label="{!q3.Answe__c}" change="{!c.getval}"/>
+                                                    </aura:if></p>
+                                                <p class="slds-p-horizontal_small">
+                                                    <aura:if isTrue="{!q3.Answer_Type__c =='Multi select'}">
+                                                        
+                                                        <ui:inputCheckbox aura:id="checkbox" text="{!q3.Id}" value=" " name="{!q1.Name}" label="{!q3.Answe__c}" change="{!c.getval}"/>
+                                                    </aura:if></p>
+                                                <p class="slds-p-horizontal_small">
+                                                    <aura:if isTrue="{!q3.Answer_Type__c =='Radio Range'}">
+                                                        <lightning:radioGroup name="{!q1.Name}"
+                                                                              label=""
+                                                                              options="{!q3.q}"
+                                                                              value=""
+                                                                              type="button"
+                                                                              
+                                                                              />
+                                                    </aura:if>    </p>
+                                                <p class="slds-p-horizontal_small">
+                                                    <aura:if isTrue="{!q3.Answer_Type__c  =='Text'}" >
+                                                        <lightning:textarea label="{!q3.Answe__c}" placeholder="Type here..." aura:id="text1" value=""  />
+                                                    </aura:if>  
+                                                </p>
+                                            </aura:iteration>
+                                            
+                                        </aura:iteration>
+                                        
+                                    </aura:if>
+                                    <div style=" margin-bottom: 30px;"></div>  
+                                </th>
+                            </tr> 
+                            
+                            
+                        </tbody>
+                    </table>
+                                  
+                </div> 
+                <div class="slds-col slds-size_2-of-12">
+                    <span> </span>
+                </div> 
+            </div> 
+        </aura:iteration>
+              <br/>
+                    <!--  Pagination Buttons Start -->
+                    <div class="slds-align_absolute-center">         
+                        <lightning:button label="Previous"
+                                          disabled="{!v.startPage == 0}"  
+                                          onclick="{!c.navigation}"
+                                          variant="brand"
+                                          iconName="utility:back"
+                                          name="previous"/>
+                        
+                        <span class="slds-badge slds-badge_lightest"
+                              style="margin-right: 10px;margin-left: 10px;">
+                            Page {!v.currentPage} out of {!v.totalPagesCount}
+                        </span>
+                        
+                        <lightning:button label="Next"
+                                          disabled="{!(v.endPage + 1) >= v.totalRecordsCount}" 
+                                          onclick="{!c.navigation}"
+                                          variant="brand"
+                                          iconName="utility:forward"
+                                          iconPosition="right"
+                                          name="next"/>
+                    </div>  
+                    <!--  Pagination Buttons End -->
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_2-of-12">
+                <span>   </span>
+            </div>
+            <div class="slds-col slds-size_8-of-12">
+                <span>  <ui:button class="btn" label="Submit" press="{!c.SaveButton}"/> </span>
+            </div> 
+        </div>
+    </div>
+</aura:component>

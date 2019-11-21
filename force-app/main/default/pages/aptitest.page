@@ -1,0 +1,20 @@
+<apex:page controller="apticlass">
+    <apex:includeLightning />
+
+    <apex:form >
+        <apex:pageBlock > 
+            <apex:repeat value="{!questiWrapperList}" var="qWrap">
+                <apex:pageBlockSection title="{!qWrap.ques1.Add_Questions__c}" columns="2" >
+                    <apex:selectRadio value="{!qWrap.isSelected1}" layout="pageDirection" >
+                        <apex:selectOptions value="{!qWrap.ans2}"/>
+                    </apex:selectRadio>
+                    
+                </apex:pageBlockSection>
+            </apex:repeat>
+             <apex:pageBlockSection >
+            <apex:commandButton value="Submit"  action="{!save}"/>
+          </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    
+</apex:page>

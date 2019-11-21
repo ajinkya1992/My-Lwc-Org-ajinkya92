@@ -1,0 +1,42 @@
+<aura:component controller="jQueryDataTableCtrl"  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	 
+     <ltng:require styles="{! $Resource.	DataTables + '/DataTables-1.10.16/media/css/jquery.dataTables.min.css'}" 
+                  scripts="{!join(',', 
+                           $Resource.jquery224 , 
+                           $Resource.DataTables + '/DataTables-1.10.16/media/js/jquery.dataTables.min.js')
+                           }" afterScriptsLoaded="{!c.scriptsLoaded}"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    
+    <aura:attribute name="lstOpp" type="KnowledgeArticleVersion[]"/>     
+    
+    <div class="slds-m-around_medium">
+        
+        
+      <b>Knowledge</b>
+        <table id="tableId" class="slds-table slds-table_bordered slds-table_cell-buffer" cellspacing="0" width="100%">
+           
+            <thead>
+              
+                <tr>
+                    <th></th>
+                    
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.lstOpp}" var="acc">
+                    <tr >
+                        
+                        <td>
+                           <br/> <a class="slds-text-heading_small">{!acc.Title}</a><p/>
+                            {!acc.ArticleNumber} &nbsp;. &nbsp;&nbsp;&nbsp;Last Publish &nbsp;&nbsp;{!acc.LastPublishedDate} <p/>
+                           <p id="wine-name" style='text-align: justify;'>{!acc.Summary}</p> <br/>
+                        </td>
+                         
+                    </tr>
+                </aura:iteration>  
+            </tbody>
+        </table>
+    </div>
+</aura:component>

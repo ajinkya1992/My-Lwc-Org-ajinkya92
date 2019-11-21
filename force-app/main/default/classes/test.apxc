@@ -1,8 +1,0 @@
-class Test{
-
-print("eat");
-
-
-print("22");
-print("cat");
-}

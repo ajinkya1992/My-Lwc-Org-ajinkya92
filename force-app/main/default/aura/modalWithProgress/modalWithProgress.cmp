@@ -1,0 +1,32 @@
+<aura:component >
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <!--currentStep attribute will control the steps of progress indicator-->
+    <aura:attribute name="currentStep" type="string" default="1"/>
+    <!--Use "slds-m-around_xx-large" class to add standard Large padding to the component--> 
+    
+
+     
+          
+              
+                    <!-- ###### MODAL BOX HEADER Part Start From Here ######-->
+                                        
+                    
+                        <!--lightning progressIndicator start-->
+                        <lightning:progressIndicator currentStep="{!v.currentStep}" type="path">
+                            <lightning:progressStep label="Step One" value="1" onclick="{!c.selectFromHeaderStep1}"/>
+                            <lightning:progressStep label="Step Two" value="2" onclick="{!c.selectFromHeaderStep2}"/>
+                            <lightning:progressStep label="Step Three" value="3" onclick="{!c.selectFromHeaderStep3}"/>
+                        </lightning:progressIndicator>
+                 
+                    <!--###### MODAL BOX BODY Part Start From Here ######-->
+                   
+                    
+                    <!--###### MODAL BOX FOOTER Part Start From Here ######-->
+                  
+            
+        
+       
+            <!--###### MODAL BOX Part END Here ######-->
+      
+    
+</aura:component>

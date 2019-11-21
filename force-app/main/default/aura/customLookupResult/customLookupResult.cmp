@@ -1,0 +1,18 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+<aura:attribute name="oAccount" type="Knowledge__kav" />
+  <!--Register the component level event-->
+    <aura:registerEvent name="oSelectedAccountEvent" type="c:selectedAccountEvent"/>
+    
+    <li role="presentation">
+        <span class="slds-lookup__item-action slds-media slds-media--center" id="lookup-option-350" role="option">
+         <div class="slds-media__body">
+          <div class="slds-input-has-icon slds-input-has-icon--left">
+              <c:svg class="slds-input__icon" xlinkHref="{!$Resource.agf__SLDS204 + '/assets/icons/utility-sprite/svg/symbols.svg#custom5'}" />                   
+            <div class="slds-lookup__result-text"><a onclick="{!c.selectAccount}">{!v.oAccount.Title}</a></div>
+          </div>
+        </div>    
+        </span>
+    </li>	
+    
+    
+</aura:component>

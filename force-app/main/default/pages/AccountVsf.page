@@ -1,0 +1,33 @@
+<apex:page standardController="Account" extensions="AccountContr">
+    <apex:form >
+        <apex:pageBlock title="Account Edit">
+            <h1>
+                This is My Heading
+            </h1>
+            <apex:pageBlockSection title="Information" >
+                <apex:inputField value="{!Account.Name}" />
+                <apex:inputField value="{!Account.AccountNumber}" />
+                <apex:inputField value="{!Account.Active__c}" />
+                <apex:inputField value="{!Account.Rating}" />
+                <apex:inputCheckbox />
+                
+            </apex:pageBlockSection>
+            <apex:pageBlockTable value="{!acc}" var="a">
+                <apex:column value="{!a.name}" />
+                <apex:column value="{!a.industry}" />
+                <apex:column value="{!a.industry}" />
+                <apex:column value="{!a.industry}" />
+                
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}" />
+                <apex:commandButton value="Cancel" action="{!cancel}" />
+                <apex:commandButton value="Show Info" action="{!showInfo}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="Account Information" rendered="{!show}">
+            <apex:outputText value="This is Account Information" />
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

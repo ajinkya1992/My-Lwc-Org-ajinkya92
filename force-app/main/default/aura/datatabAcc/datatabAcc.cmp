@@ -1,0 +1,103 @@
+<aura:component controller="DatatablAcc" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+ 
+    <aura:attribute name="DemoList" type="List" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+     <aura:attribute name="recordId" type="String" />
+    
+  <aura:attribute name="listControllingValues" type="list" default="[]" description="to store controller field values"/>
+    <aura:attribute name="listDependingValues" type="list" default="['--- None ---']" description="to store dependent field values"/>
+    <aura:attribute name="depnedentFieldMap" type="map" description="map to store dependent values with controlling value"/>
+    <aura:attribute name="bDisabledDependentFld" type="boolean" default="true"/> 
+    
+    <aura:attribute name="objDetail" type="Account" default="{'sobjectType' : 'Account'}"/>
+    <aura:attribute name="controllingFieldAPI" type="string" default="Region__c" description="store field API name of Controller field"/>
+    <aura:attribute name="dependingFieldAPI" type="string" default="Zone__c" description="store field API name of dependent field"/>
+        
+    
+    
+           <div class="slds-card__body">
+                                <lightning:recordEditForm 
+                                                          objectApiName="Account">
+                                    <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_fixed-layout" role="grid">
+                                        
+                                        <thead>
+                                            <th scope="col"> 
+                                                Sr. No
+                                            </th>
+                                            <th scope="col">
+                                                Name
+                                            </th>
+                                            <th scope="col">
+                                                status
+                                            </th>
+                                            <th scope="col">
+                                                Region
+                                            </th>
+                                             <th scope="col">
+                                                Zone
+                                            </th>
+                                            <th class="slds-text-title_caps" scope="col">
+                                                <lightning:button variant="success" label="Add Row" title="Success" onclick="{!c.addbooking}"/>
+                                                
+                                            </th>
+                                        </thead> 
+                                        <tbody>
+                                            <aura:iteration items="{!v.DemoList}" var="headObj" indexVar="index">
+                                                <tr >
+                                                    <td >
+                                                        {!index+1}
+                                                    </td>
+                                                    <td class="hide-label">
+                                                  
+                                                            <lightning:inputField variant="label-hidden" fieldName="Name" value="{!headObj.Name}"/>
+                                                      
+                                                    </td>
+                                                    <td class="hide-label">
+                                                        
+                                                            <lightning:inputField variant="label-hidden" fieldName="Active__c" value="{!headObj.Active__c}"/>
+                                                    </td>
+                                                   <td class="hide-label">
+                                                       <lightning:layoutItem size="12" padding="around-small">    
+                                                           <lightning:select name="controllerFld"
+                                                                             value="{!headObj.Region__c}"
+                                                                             label="Region"
+                                                                             onchange="{!c.onControllerFieldChange}">
+                                                               <aura:iteration items="{!v.listControllingValues}" var="val">
+                                                                   <option value="{!val}">{!val}</option>
+                                                               </aura:iteration>
+                                                           </lightning:select>
+                                                       </lightning:layoutItem>
+                                                        
+                                                         <!--     <lightning:inputField variant="label-hidden" fieldName="Region__c" value="{!headObj.Region__c}"/> -->
+                                                    </td>
+                                                     <td class="hide-label">
+                                                         <lightning:layoutItem size="12" padding="around-small">
+                                                             <lightning:select name="dependentFld"
+                                                                               value="{!headObj.Zone__c}"
+                                                                               label="Zone"
+                                                                              >
+                                                                 <aura:iteration items="{!v.listDependingValues}" var="val">
+                                                                     <option value="{!val}">{!val}</option>
+                                                                 </aura:iteration>
+                                                             </lightning:select>
+                                                         </lightning:layoutItem>
+                                                        
+                                                         <!--   <lightning:inputField variant="label-hidden" fieldName="Zone__c" value="{!headObj.Zone__c}"/> -->
+                                                    </td>
+                                                  
+                                                 
+                                                        <td> 
+                                                            <button  class="slds-button slds-button_destructive" id="{!index}" onclick="{!c.removeRow}"> Delete </button>
+                                    
+                                                        </td>
+                                                   
+                                                </tr>
+                                                <!-- <lightning:inputField fieldName="Project_LCDB__c" value="{!obj.Projects.Id}"/>-->
+                                            </aura:iteration>
+                                        </tbody> 
+                                    </table>
+                                    <lightning:button variant="success" label="Save" title="Success" onclick="{!c.handleSave }"/>
+                                    
+                                </lightning:recordEditForm>
+                            </div>
+</aura:component>

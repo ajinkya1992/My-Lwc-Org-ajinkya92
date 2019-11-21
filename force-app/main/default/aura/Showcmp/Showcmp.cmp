@@ -1,0 +1,11 @@
+<aura:component controller="FilterStopWords" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="messageFromEvent" type="String" />
+    <aura:attribute name="isStatusTrue" type="Boolean" default="false"/>
+    <aura:handler name="cmpEvent" event="c:MessageSendReceive" action="{!c.handleComponentEvent}"/>    
+      <c:TextFromcmp/>
+    
+     <aura:if isTrue="{!v.isStatusTrue}">
+     <c:TextTocmp valueExpectedFromParent="{!v.messageFromEvent}" /> 
+    </aura:if>
+    
+</aura:component>

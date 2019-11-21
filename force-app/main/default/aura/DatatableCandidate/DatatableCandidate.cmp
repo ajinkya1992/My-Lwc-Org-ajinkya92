@@ -1,0 +1,166 @@
+<aura:component controller="CnadidateData" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" access="global" >
+   <ltng:require styles="{! $Resource.	DataTables + '/DataTables-1.10.16/media/css/jquery.dataTables.min.css'}" 
+                  scripts="{!join(',', 
+                           $Resource.jquery224 , 
+                           $Resource.DataTables + '/DataTables-1.10.16/media/js/jquery.dataTables.min.js')
+                           }" afterScriptsLoaded="{!c.scriptsLoaded}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="ContWrp" type="Object"/> 
+     <aura:attribute name="WraperContNew" type="Object"/>
+    <aura:attribute name="AccWrp" type="Object"/> 
+    <aura:attribute name="filteredEmpList" type="Object"/>
+     <aura:attribute name="stagedrop" type="Object"/>
+    <aura:attribute name="recordId" type="Id" />
+    
+     <aura:html tag="style">
+         .slds-modal__container{
+         max-width: 70rem !important;
+         width:70% !important;
+         } 
+        .slds-modal__content{
+        overflow: hidden !important;
+        }  
+    </aura:html>
+    <div>
+        <div aura:id='accounthide' class="slds-show">
+            <article class="slds-card">
+                <div class="modal-header slds-modal__header slds-size_1-of-1">
+                    <center><h1 class="title slds-text-heading--medium"> Disciplines </h1></center>
+                </div>
+                <div class="" style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
+                    <table class="slds-table slds-table--bordered slds-table--cell-buffer datatbleId" >
+                        <thead>
+                            <tr class="slds-text-heading--label">
+                                <th scope="col">
+                                     <ui:inputCheckbox aura:id="checkbox22" change="{!c.checkAllCheckboxesAcc}"/>
+                                </th>
+                                <th scope="col">
+                                    <span class="slds-truncate"><b>Account Name</b></span>
+                                </th>
+                                <th scope="col">
+                                    <span class="slds-truncate"><b>	AccountNumber</b></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.AccWrp}" var="obj" indexVar="indx">
+                                <tr class="slds-hint-parent">
+                                    <td class="slds-cell-wrap">
+                                         <ui:inputCheckbox text="{!obj.acc.Id}" aura:id="checkbox" value="{!obj.isselect}"/>
+                                       <!-- <input name="options" tabindex="-1" id="{!'Disciplines'+indx}" aria-labelledby="check-button-label-01 column-group-header" type="checkbox" value="{!obj.isselect}" onchange="{!c.onDisciplinesCheck}" />-->
+                                    </td>
+                                    <td class="slds-cell-wrap">{!obj.acc.Name}</td>
+                                    <td class="slds-cell-wrap">{!obj.acc.AccountNumber}</td>
+                                    
+                                </tr>
+                            </aura:iteration> 
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer slds-modal__footer slds-size_1-of-1" style="height: 60px;">
+                    <button aura:id="nextBtn" style="float: right;margin-left: 5px;" class="slds-button slds-button_brand" onclick="{!c.showContacts}">Next</button>
+                    <button aura:id="cancleBtn" style="float: right;" class="slds-button slds-button_brand" onclick="{!c.onCancelAction}">Cancel</button>
+                  
+                </div>
+            </article>
+        </div>
+        <div aura:id='expCatDivId' class="slds-hide">
+            <article class="slds-card">
+                <div class="modal-header slds-modal__header slds-size_1-of-1">
+                    <center><h1 class="title slds-text-heading--medium"> Experience Categories </h1></center>
+                </div>
+                <div class="" style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
+                    <table class="slds-table slds-table--bordered slds-table--cell-buffer datatbleId2"  >
+                        <thead>
+                            <tr class="slds-text-heading--label">
+                                <th scope="col">
+                                   <ui:inputCheckbox aura:id="checkbox11" change="{!c.checkAllCheckboxesCont}"/>
+                                </th>
+                                <th scope="col">
+                                    <span class="slds-truncate"><b>Contact Name</b></span>
+                                </th>
+                                <th scope="col">
+                                    <span class="slds-truncate"><b>Email</b></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.ContWrp}" var="obj" indexVar="indx">
+                                <tr class="slds-hint-parent">
+                                    <td class="slds-cell-wrap">
+                                       <ui:inputCheckbox text="" aura:id="checkbox1" value="{!obj.isselect}"/>
+                                    </td>
+                                    <td class="slds-cell-wrap">{!obj.cont.Name}</td>
+                                    <td class="slds-cell-wrap">{!obj.cont.Email}</td>
+                                     
+                                </tr>
+                            </aura:iteration> 
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer slds-modal__footer slds-size_1-of-1" style="height: 60px;">
+                    <button aura:id="nextBtn" style="float: right;margin-left: 5px;" class="slds-button slds-button_brand" onclick="{!c.showContactsnew}">Next</button>
+                    <button aura:id="cancleBtn" style="float: right;" class="slds-button slds-button_brand" onclick="{!c.onCancelAction}">Cancel</button>
+                    <button aura:id="cancleBtn" style="float: right;" class="slds-button slds-button_brand" onclick="{!c.onExpCatPrevAction}">Previous</button>
+                </div>
+            </article>
+        </div>
+
+        
+        
+        
+         <div aura:id='ContTablenew' class="slds-hide">
+            <article class="slds-card">
+                <div class="modal-header slds-modal__header slds-size_1-of-1">
+                    <center><h1 class="title slds-text-heading--medium"> Contact Detail  </h1></center>
+                </div>
+                <div class="" style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
+                    <table class="slds-table slds-table--bordered slds-table--cell-buffer datatbleId3"  >
+                        <thead>
+                            <tr class="slds-text-heading--label">
+                                <th scope="col">
+                                   <ui:inputCheckbox aura:id="checkbox113" change="{!c.checkAllCheckboxesstageCont}"/>
+                                </th>
+                                <th scope="col">
+                                    <span class="slds-truncate"><b>Contact Name</b></span>
+                                </th>
+                                <th scope="col">
+                                    <span class="slds-truncate"><b>Stage</b></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.WraperContNew}" var="obj" indexVar="indx">
+                                <tr class="slds-hint-parent">
+                                    <td class="slds-cell-wrap">
+                                       <ui:inputCheckbox text="" aura:id="checkbox13" value="{!obj.isselect}"/>
+                                    </td>
+                                    <td class="slds-cell-wrap">{!obj.cont.Name}</td>
+                                    <td class="slds-cell-wrap">
+                                     <div class="slds-form-element__control">
+                                                        <div class="slds-select_container">
+                                                            <lightning:select aura:id="stageId" name="" label="" onchange="{!c.onRolePickChange}">
+                                                                <option value="">-None-</option>
+                                                                <aura:iteration items="{!v.stagedrop}" var="ac">
+                                                                    
+                                                                    <option value="{!obj.cont.Id+'###'+ac}" selected="{!ac}" text="{!ac}"></option>
+                                                                </aura:iteration>
+                                                            </lightning:select>
+                                                        </div>
+                                                    </div>
+                                        </td>
+                                </tr>
+                            </aura:iteration> 
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer slds-modal__footer slds-size_1-of-1" style="height: 60px;">
+                    <button aura:id="nextBtn" style="float: right;margin-left: 5px;" class="slds-button slds-button_brand" onclick="{!c.save}">Save  Contact</button>
+                    <button aura:id="cancleBtn" style="float: right;" class="slds-button slds-button_brand" onclick="{!c.onCancelAction}">Cancel</button>
+             
+                </div>
+            </article>
+        </div>
+        
+    </div>
+</aura:component>

@@ -1,0 +1,61 @@
+<aura:component controller="Get_Product"  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" access="global" >
+    <aura:attribute name="prodList" type="OpportunityLineItem[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="recordId" type="String"/>
+    <legend id="newCampaingForm" class="slds-text-heading--small slds-p-vertical--medium" style=" text-align: -webkit-center;" >
+                  Add Product
+                </legend>
+  
+     <lightning:recordEditForm aura:id="form" recordId="{!v.recordId}" objectApiName="Product2" >      
+        <div class="slds-form" role="list">
+            <div class="slds-form__row">
+                <div class="slds-form__item" role="listitem">
+                    <lightning:inputField fieldName="Name"  aura:id="prodName" disabled ="true" /> 
+                    
+                </div>
+                <div class="slds-form__item" role="listitem">
+                            <lightning:input   aura:id="quantity"  label="Quantity" required="true" value=""/>
+                       
+                </div>
+                <div class="slds-form__item" role="listitem">
+                        <div class="slds-form-element__control">
+                            <lightning:input   aura:id="salesPrice"  label="SalesPrice" required="true" value=""/>
+                        </div>              
+                </div>
+                <div class="slds-form__item" role="listitem">     
+                        <div class="slds-form-element__control">
+                            <lightning:input  type="Date"  aura:id="date"  label="date"  value=""/>
+                        </div>
+                </div>
+                <div class="slds-form__item" role="listitem">
+                        <div class="slds-form-element__control">
+                            <lightning:inputField fieldName="Description"  aura:id="description"  />
+                        </div>
+                 
+                </div>
+            </div>
+            
+        </div>
+        
+    </lightning:recordEditForm>
+    <lightning:recordEditForm aura:id="form" recordId="" objectApiName="OpportunityLineItem"  >
+        
+        <div class="slds-form" role="list">
+            <div class="slds-form__row">
+                <div class="slds-form__item" role="listitem">
+                    <div class="slds-form-element__control">
+                        <lightning:inputField fieldName="OpportunityId"  aura:id="opportunity"  /> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning:recordEditForm>
+    
+    
+    
+    <div style="color: red;font-size: smaller;" aura:Id="CaseNameField1" class="slds-hidden" >Please Enter Requierd Fields</div>
+    <div class="slds-m-top_medium" style="text-align: -moz-center;">
+        <lightning:button variant="brand" label="Submit"  onclick="{!c.addProd}" />
+    </div> 
+                
+</aura:component>

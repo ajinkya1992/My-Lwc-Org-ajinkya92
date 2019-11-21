@@ -1,0 +1,41 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	 <aura:attribute name="draggedDivID" type="String" access="private" />
+    <aura:attribute name="table1Data" type="Object[]" access="private" />
+    <aura:attribute name="table2Data" type="Object[]" access="private" />
+    <aura:handler name="init" value="this" action="{!c.doInit}" />
+    
+	<div>
+        <div class="dnd-table-parent">
+             <br/> 
+            <div class="dnd-table" ondrop="{!c.handleDrop1}" ondragover="{!c.allowDrop1}" id="table1" style="width:50%;color:red">
+                Drop your Content here1.
+                <aura:iteration items="{!v.table1Data}" var="tableRow">
+                      <br/>
+                    <div id="{!tableRow.rowid}" class="dnd-table-row" draggable="true" ondragstart="{!c.handleDrag}">
+                        <aura:iteration items="{!tableRow.rowdata}" var="tableCell">
+                            <div class="dnd-table-cell">
+                                {!tableCell}
+                            </div>
+                        </aura:iteration>
+                    </div>
+                </aura:iteration>
+            </div>
+        </div><br/><br/>
+        <div class="dnd-table-parent">
+               <br/>
+            <div class="dnd-table" ondrop="{!c.handleDrop}" ondragover="{!c.allowDrop}" id="table2" tyle="width:50%;color:red">
+               <br/> Drop your Content here2.
+                <aura:iteration items="{!v.table2Data}" var="tableRow">
+                    <div id="{!tableRow.rowid}" class="dnd-table-row" draggable="true" ondragstart="{!c.handleDrag}">
+                        <aura:iteration items="{!tableRow.rowdata}" var="tableCell">
+                            <div class="dnd-table-cell">
+                                {!tableCell}
+                            </div>
+                        </aura:iteration>
+                    </div>
+                </aura:iteration>
+            </div>
+        </div>
+       
+    </div>
+</aura:component>

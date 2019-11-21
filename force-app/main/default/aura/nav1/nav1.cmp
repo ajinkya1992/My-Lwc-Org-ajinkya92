@@ -1,0 +1,24 @@
+<aura:component implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="pageReference" type="Object"/>
+    <aura:attribute name="firstname1" type="String" />
+
+  
+  
+    
+    
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    <lightning:navigation aura:id="navService"/>
+   
+    
+    
+   <div class="slds-form-element">
+ 
+  <div class="slds-form-element__control">
+    <input id="text-input-id-1" placeholder="Placeholder Text" disabled="disabled" class="slds-input" type="text" value="{!v.firstname1}" />
+  </div>
+</div>
+    <br/><br/>
+    <lightning:button label="Navigate to Target" onclick="{!c.handleClick}"/>
+    <lightning:button label="get data " onclick="{!c.handleClick1}"/>
+  
+</aura:component>

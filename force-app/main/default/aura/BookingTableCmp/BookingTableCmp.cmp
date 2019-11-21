@@ -1,0 +1,169 @@
+<aura:component controller="Aj_LI_AccountController"  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+     <aura:attribute name="rowIndex1" type="String"/>
+    <aura:attribute name="rowIndex2" type="String"/>
+     <aura:attribute name="chkbok" type="Boolean"  />
+    <aura:attribute name="wrpacc" type="Account[]" />
+    <aura:attribute name="wrapperConList" type="Contact[]" />
+    <aura:attribute name="wrapperBookingList" type="Show_Booking__c[]" />
+    <aura:attribute name="hideshow"  type="Boolean" default="false" /> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="ConId" type="String" />
+    <aura:handler name="deletebooking" event="c:DeleteRow" action="{!c.removebook}" />   
+    <aura:handler name="chkboxCal" event="c:chckboxCalculation" action="{!c.calOnTabl}" />   
+  
+   <!-- <aura:handler name="bookch" event="c:bookchkevt" action="{!c.chkbooking}" /> -->
+
+    
+    <aura:if isTrue="{!v.wrpacc.length>0}">
+        <div class="slds-box">
+            <p>
+                <table class="mycustom slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                             <th class="slds-text-title_caps" scope="col">
+                                <div class="slds-truncate" title="Account Name">SrNo</div>
+                            </th> 
+                            <th class="slds-text-title_caps" scope="col">
+                               
+                                <ui:inputCheckbox aura:id="checkbox22" change="{!c.checkAllCheckboxes}"/>
+                            </th>  
+                            <th class="slds-text-title_caps" scope="col">
+                                <div class="slds-truncate" title="Account Name">Account Name</div>
+                            </th>  
+                            <th class="slds-text-title_caps" scope="col">
+                                <div class="slds-truncate" title="Parent Account Name">Parent Account Name</div>
+                            </th>  
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <aura:iteration items="{!v.wrpacc}" var="obj" indexVar="rowIndex2">
+                            <tr>
+                                 <td scope="row">
+                                    <div class="slds-truncate" title=""><a>{!rowIndex2 + 1}</a></div>
+                                </td>
+                                <td scope="row" class="slds-text-align--right" style="width:3.25rem;">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-checkbox">
+                                                
+                                                <ui:inputCheckbox text="{!obj.acc.Id}" aura:id="checkbox" value="{!obj.isselect}"/>
+                                                <span class="slds-checkbox--faux"></span>
+                                                <span class="slds-form-element__label text"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td scope="row">
+                                    <div class="slds-truncate" title="{!obj.acc.Name}"><a>{!obj.acc.Name}</a></div>
+                                </td>
+                                <td scope="row">
+                                   
+                                    <div class="slds-truncate" title="{!obj.acc.ParentId}">{!obj.acc.ParentId}</div>
+                                </td>
+                                
+                                
+                            </tr>
+                        </aura:iteration>
+                        
+                    </tbody>
+                </table>
+                
+            </p>
+        </div>
+        <div style="margin-left: 50%;margin-top: 13px;">
+            <button class="slds-button slds-button_brand" onclick="{!c.showContact}">Show Contact</button>
+        </div>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.wrapperConList.length>0}">
+        <div class="slds-box">
+            <p>
+                <table class="mycustom slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                             <th class="slds-text-title_caps" scope="col">
+                                <div class="slds-truncate" title="Account Name">SrNo</div>
+                            </th> 
+                            <th class="slds-text-title_caps" scope="col">
+                                <div class="slds-truncate" title="Account Name">Contact Name</div>
+                            </th>  
+                            <th class="slds-text-title_caps" scope="col">
+                                <div class="slds-truncate" title="Account Name">Contact Last Name</div>
+                            </th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.wrapperConList}" var="obj1" indexVar="rowIndex1">
+                            <tr>
+                                 <td scope="row">
+                                    <div class="slds-truncate" title="SrNo"><a> {!rowIndex1 + 1}</a></div>
+                                </td>
+                                <td scope="row">
+                                    <div class="slds-truncate" title="{!obj1.cont.FirstName}"><a>{!obj1.cont.FirstName}</a></div>
+                                </td>
+                                <td scope="row">
+                                    <div class="slds-truncate" title="{!obj1.cont.LastName}"><a>{!obj1.cont.LastName}</a></div>
+                                </td>
+                                <td scope="row">
+                                   
+                                      <ui:inputRadio aura:id="radio" name="others" value="" text="{!obj1.cont.Id}" change="{!c.contchk}"/>
+                                </td>
+                                
+                            </tr>
+                        </aura:iteration>
+                       
+                    </tbody>
+                </table>
+                <div style="margin-left: 50%;margin-top: 13px;">
+                    <button class="slds-button slds-button_brand" onclick="{!c.showBooking}"  > Add Booking for Contact</button>
+                </div>
+            </p>
+        </div>   
+    </aura:if> 
+    
+    
+    
+
+   
+    <div class="slds-box "  >
+        <p>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+               
+               <thead>
+                    <tr class="slds-line-height_reset">
+                         <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Account Name">Sr No </div>
+                        </th> 
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Account Name">Description </div>
+                        </th> 
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Account Name">Amount</div>
+                        </th> 
+                      <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Account Name">Action</div>
+                        </th> 
+                        <th class="slds-text-title_caps" scope="col">
+                            <div class="slds-truncate" title="Account Name">Calulated</div>
+                        </th> 
+                        <th class="slds-text-title_caps" scope="col">
+                              <button class="slds-button slds-button_brand" onclick="{!c.addbooking}">Add Row</button>
+                        </th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <aura:iteration items="{!v.wrapperBookingList}" var="bookingObj" indexVar="index">
+                        <c:BookingtListItem  bookactRec="{!bookingObj}" rowIndex="{!index}" />
+                    </aura:iteration>
+                    
+                   
+                </tbody>
+            </table>
+            <div style="margin-left: 50%;margin-top: 13px;">
+                <button class="slds-button slds-button_success" onclick="{!c.save}"> Save Booking </button>
+            </div>
+        </p>
+    </div>   
+                
+</aura:component>

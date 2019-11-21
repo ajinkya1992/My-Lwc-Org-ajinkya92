@@ -1,0 +1,15 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+      <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+        <aura:attribute name="spaceTypeList" type="string[]" default="Conference/Focus Room,Copy Area,Kitchenette,Loading Dock,Electrical Room,Exterior Building,Janitorial Closet,Mothers Room,Office Area,Parking Garage,Restrooms/Locker Rooms,Stairs/Elevators,Carpet Spots/Vacuuming/Flooring,Lobbies/Corridors"/>
+        <aura:attribute name="detailRecord" type="Account" 
+                        default="{ 'sobjectType': 'Account','Name': ''}"/>
+        <aura:attribute name="acclst" type="Account[]"/>
+        
+        <ui:button label="loop test" press="{!c.loop}"/>
+        
+        <aura:iteration items="{!v.acclst}" var="acc">
+            <p> Space {!acc.Name}</p>
+        </aura:iteration>
+     
+   
+</aura:component>

@@ -1,0 +1,19 @@
+<aura:component  implements="lightning:isUrlAddressable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:appHostable,force:lightningQuickAction,lightning:actionOverride" access="global">
+  <aura:attribute name="pageReference" type="Object"/>
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+   
+    <aura:attribute name="first" type="String" />
+    <aura:attribute name="page" type="Object"/>
+    <lightning:navigation aura:id="navService"/>
+    <lightning:button label="Navigate" onclick="{!c.handleClick}"/>
+    
+     <aura:handler name="change" value="{!v.pageReference1}" action="{!c.onPageReferenceChanged}" />
+    <br/>
+     <aura:attribute name="fields" type="List" default="['firstName1']" />
+    
+    <lightning:inputName fieldsToDisplay="{!v.fields}" aura:id="nameInput" label="Name Input" />
+     <lightning:button label="Update Name" onclick="{!c.updateName}" />
+    
+     <lightning:button label="get data" onclick="{!c.getdata}" />
+    Hello {!v.firstname1}.
+    </aura:component>

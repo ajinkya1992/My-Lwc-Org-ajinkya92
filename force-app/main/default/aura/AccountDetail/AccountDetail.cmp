@@ -1,0 +1,22 @@
+<aura:component  controller="SaveAccDetails" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	 <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+      <aura:attribute name="name" type="String"/>
+    
+    
+    <h1>Save Account</h1>
+   
+     
+    
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <lightning:input  name="Name" label="Name" aura:id="nameId"  />
+              <lightning:input name="Last Name" label="Last Name"  aura:id="LnameId" />
+        </div>
+        <div class="slds-col">
+           <lightning:input name="Adress" label="Adress" aura:id="AddressId" />
+            <lightning:input name="Phone no" label="Phone" aura:id="phnId" />
+        </div>
+    </div>
+    <br/>
+     <lightning:button variant="success" label="Success" title="Success"   onclick="{!c.save}" />
+</aura:component>

@@ -1,0 +1,17 @@
+<template>
+    <lightning-record-edit-form object-api-name={CaseObject}  onsuccess={handleSuccess}>
+        <lightning-messages></lightning-messages>
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-input-field field-name={SuppliedName}></lightning-input-field>
+                <lightning-input-field field-name={SuppliedEmail}></lightning-input-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <lightning-input-field field-name={Description}></lightning-input-field>
+                <lightning-input-field field-name={Subject}></lightning-input-field>
+                <lightning-input-field field-name={ContactId}></lightning-input-field>
+            </div>
+         </div>
+        <lightning-button type="submit" variant="brand" label="Create Case"></lightning-button>
+    </lightning-record-edit-form>
+</template>

@@ -1,0 +1,10 @@
+<aura:component implements="lightning:isUrlAddressable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:appHostable,force:lightningQuickAction,lightning:actionOverride" access="global">
+     <aura:attribute name="firstname" type="String" />
+    <aura:attribute name="page" type="Object"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    Hello {!v.firstname}.
+    <br/>
+    <lightning:navigation aura:id="navService" />
+   
+    <lightning:button label="Navigate to back hello page" onclick="{!c.handleClick}"/>
+</aura:component>

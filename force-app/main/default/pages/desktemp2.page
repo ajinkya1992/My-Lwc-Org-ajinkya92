@@ -1,0 +1,183 @@
+<apex:page lightningStylesheets="true">
+    
+     <br/><br/>
+     <apex:slds > 
+         <img src="https://technomile.unanet.biz/technomile/action/image?path=8%2FTM%20Logo%2075%20percent.jpg" alt="" class="splash"/>
+        <div class="ui-widget" data-item-id="72c6c3e1-2fde-4ef1-8a79-403a614faaac" data-priority="" data-aura-rendered-by="122:2;a" style="text-align: -webkit-right;">
+                          <button class="slds-button slds-button_brand custbtn cPatholeSubmit" style="width: 100px;margin:20px;;background-color:#2a86c7" type="button" data-aura-rendered-by="115:2;a" data-aura-class="cPatholeSubmit"><!--render facet: 116:2;a-->Login </button></div>
+        <div class="slds-box"> 
+            
+            <div class="slds-grid"> 
+                 
+                <div class="slds-size_7-of-12" style="padding: 15px;" >
+ <h1 class="slds-text-heading--small slds-m-right--xx-small slds-hyphenate">Articles</h1>
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                             <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <h3  class="article-head"> Where can I report residents who do not clean up after their pets?
+                                        </h3><br/><p>
+                                        Information on reporting negligent pet owners.<br/>0 View•Mar 1, 2018•FAQ
+                                        </p>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+             
+                  <div class="slds-size_5-of-12" style="padding: 15px;" >
+                      
+                      <div class="value" aria-hidden="true" data-aura-rendered-by="8:104;a" style="text-align: -webkit-center;">9</div>
+                      <div class="slds-text-body--small" aria-hidden="true" data-aura-rendered-by="10:104;a" style="text-align: -webkit-center;">Articles</div>
+                      <br/>
+                      <div class="ui-widget" data-item-id="72c6c3e1-2fde-4ef1-8a79-403a614faaac" data-priority="" data-aura-rendered-by="122:2;a">
+                          <button class="slds-button slds-button_brand custbtn cPatholeSubmit" style="width: 290px;" type="button" data-aura-rendered-by="115:2;a" data-aura-class="cPatholeSubmit"><!--render facet: 116:2;a-->Submit Request</button></div>
+                  <br/><br/>
+                      <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                           
+                           
+                            
+                             <tr class="slds-line-height_reset">
+                                <h2 class="slds-text-heading--small slds-m-right--xx-small slds-hyphenate">Trending Articles</h2>
+                                <th class="" scope="col">
+                                   <p>
+                                        Information on reporting negligent pet owners.<br/>0 View•Mar 1, 2018•FAQ
+                                        </p>
+                                </th>
+                            </tr>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                   <p>
+                                        Information on reporting negligent pet owners.<br/>0 View•Mar 1, 2018•FAQ
+                                        </p>
+                                </th>
+                            </tr>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                   <p>
+                                        Information on reporting negligent pet owners.<br/>0 View•Mar 1, 2018•FAQ
+                                        </p>
+                                </th>
+                            </tr>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                   <p>
+                                        Information on reporting negligent pet owners.<br/>0 View•Mar 1, 2018•FAQ
+                                        </p>
+                                </th>
+                            </tr>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                   <p>
+                                        Information on reporting negligent pet owners.<br/>0 View•Mar 1, 2018•FAQ
+                                        </p>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div> 
+                
+                
+            </div>
+            
+             <div class="slds-grid"> 
+                 
+                <div class="slds-size_7-of-12" style="padding: 15px;margin-top: -220px;" >
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                             <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <h1> Where can I report residents who do not clean up after their pets?
+                                        </h1><br/><p>
+                                        Information on reporting negligent pet owners.<br/>0 View•Mar 1, 2018•FAQ
+                                        </p>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+             
+            </div>
+            
+            
+             <div class="slds-grid"> 
+                 
+                <div class="slds-size_7-of-12" style="padding: 15px;margin-top: -111px;" >
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                             <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <h3  class="article-head"> Where can I report residents who do not clean up after their pets?
+                                        </h3><br/><p>
+                                        Information on reporting negligent pet owners.<br/>0 View•Mar 1, 2018•FAQ 
+                                        </p>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+             
+            </div>
+            
+            
+             <div class="slds-grid"> 
+                 
+                <div class="slds-size_7-of-12" style="padding: 15px;" >
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                             <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <h3  class="article-head"> Where can I report residents who do not clean up after their pets?
+                                        </h3><br/><p>
+                                        Information on reporting negligent pet owners.<br/>0 View•Mar 1, 2018•FAQ
+                                        </p>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+             
+            </div>
+            
+            
+             <div class="slds-grid"> 
+                 
+                <div class="slds-size_7-of-12" style="padding: 15px;" >
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                             <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <h3  class="article-head"> Where can I report residents who do not clean up after their pets?
+                                        </h3><br/><p>
+                                        Information on reporting negligent pet owners.<br/>0 View•Mar 1, 2018•FAQ
+                                        </p>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+             
+            </div>
+            
+             <div class="slds-grid"> 
+                 
+                <div class="slds-size_7-of-12" style="padding: 15px;" >
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                             <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <h3  class="article-head"> Where can I report residents who do not clean up after their pets?
+                                        </h3><br/><p>
+                                        Information on reporting negligent pet owners.<br/>0 View•Mar 1, 2018•FAQ
+                                        </p>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+             
+            </div>
+         </div>
+    </apex:slds>
+</apex:page>

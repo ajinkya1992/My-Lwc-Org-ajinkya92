@@ -1,0 +1,15 @@
+<apex:page standardController="Account" extensions="TestTop">
+    
+    <apex:pageBlock title="{!city}Weather">
+   <apex:pageBlockSection >
+       <apex:pageMessages ></apex:pageMessages>
+       
+       <apex:outputText label="Temperature" value="{!temp}"></apex:outputText>
+       <apex:outputText label="pressure" value="{!press}"></apex:outputText>
+       <apex:outputText label="Humidity" value="{!humi}"></apex:outputText>
+       <apex:outputText label="MAX Temperature" value="{!mxtemp}"></apex:outputText>
+       <apex:outputText label="MIN Temperature" value="{!mintemp}"></apex:outputText>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+   
+</apex:page>

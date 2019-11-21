@@ -1,0 +1,49 @@
+<apex:page standardController="Account" extensions="SoqlTest">
+    <apex:form >
+        <apex:pageBlock title="Account" >
+            <apex:pageBlockSection title="Account Information" columns="1" collapsible="false">
+                <apex:pageBlockTable value="{!wrpacc}" var="wrap">
+                    <apex:column >
+                        <apex:inputCheckbox value="{!wrap.isselect}" />
+                    </apex:column>
+                    <apex:column value="{!wrap.acc.Name}" />
+                    <apex:column value="{!wrap.acc.AccountNumber}"/>
+                    <apex:column value="{!wrap.acc.AnnualRevenue}"/>
+                  
+                </apex:pageBlockTable>
+                
+                <apex:commandButton value="Show Contacts" action="{!showContact}" />
+               
+                <apex:pageBlockTable value="{!wrpaCont}" var="contwrap" rendered="{!wrpaCont.size <> 0}" >
+                     <apex:column >
+                        <apex:inputCheckbox value="{!contwrap.isselectforCont}"/>
+                    </apex:column>
+                    <apex:column value="{!contwrap.cont.FirstName}" />
+                    <apex:column value="{!contwrap.cont.LastName}"/>
+                    <apex:column value="{!contwrap.cont.Phone}"/>
+                    <apex:column value="{!contwrap.cont.Email}"/>
+                </apex:pageBlockTable>
+                
+                 <apex:commandButton value="Send Mail" action="{!SendEmail}"  />
+             
+            </apex:pageBlockSection>
+           
+        </apex:pageBlock>
+    </apex:form>
+    
+      <apex:form >
+        <apex:outputpanel >
+            <apex:actionSupport event="onclick" >
+           <apex:inputCheckbox value="{!check}"/>  
+
+           </apex:actionSupport>
+        </apex:outputpanel>
+            
+            
+            
+        <apex:outputPanel >
+            <apex:commandButton value="Submit" rendered="{!check}"/>
+        </apex:outputPanel>
+    </apex:form>
+    
+</apex:page>

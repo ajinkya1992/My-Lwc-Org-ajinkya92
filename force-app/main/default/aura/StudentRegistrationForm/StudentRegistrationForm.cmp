@@ -1,0 +1,31 @@
+<aura:component controller ="StudRegForm"  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+  <aura:attribute name="recordId" type="String"/>
+    
+    <lightning:layout class="slds-hint-parent">
+        <a onclick="{!c.navToRecord}">
+      go back
+        </a>
+        <lightning:buttonIcon iconName="utility:edit" class="slds-col_bump-left" iconClass="slds-button__icon_hint" variant="bare" alternativeText="Edit Record" onclick="{!c.editRecord}"/>
+    </lightning:layout>
+    <lightning:recordViewForm aura:id="viewForm"  objectApiName="Contact" class='slds-hide' recordId="{!v.recordId}" >
+        <lightning:messages />
+        <lightning:outputField fieldName="AccountId" />
+        <lightning:inputField fieldName="FirstName" />
+        <lightning:inputField fieldName="LastName" />
+        <lightning:inputField fieldName="Email" />
+        
+    </lightning:recordViewForm>
+
+     <lightning:recordEditForm  aura:id="editForm"  objectApiName="Contact" recordId="{!v.recordId}"  >
+        <lightning:messages />
+         
+        <lightning:outputField fieldName="AccountId" aura:id="AccountId" />
+        <lightning:inputField fieldName="FirstName" aura:id="FirstName" />
+        <lightning:inputField fieldName="LastName" aura:id="LastName" />
+        <lightning:inputField fieldName="Email" aura:id="Email2" />
+     
+    </lightning:recordEditForm>
+    <lightning:button variant="neutral" label="success" title="success" type="submit" onclick="{!c.handleSuccess}"/>
+    <lightning:button variant="neutral" label="Cancel" title="Cancel" type="text" onclick="{!c.handleCancel}"/>
+    
+</aura:component>

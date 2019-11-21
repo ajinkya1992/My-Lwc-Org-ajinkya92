@@ -3,8 +3,62 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "c/accRecForm": [
+                "accRecForm/accRecForm.js"
+            ],
+            "c/accountTable": [
+                "accountTable/accountTable.js"
+            ],
+            "c/contBaseAcc": [
+                "contBaseAcc/contBaseAcc.js"
+            ],
+            "c/contBaseAccDatatable": [
+                "contBaseAccDatatable/contBaseAccDatatable.js"
+            ],
+            "c/contRecordForm": [
+                "contRecordForm/contRecordForm.js"
+            ],
+            "c/contdataTabl": [
+                "contdataTabl/contdataTabl.js"
+            ],
+            "c/createAccApx": [
+                "createAccApx/createAccApx.js"
+            ],
+            "c/createAccDemo": [
+                "createAccDemo/createAccDemo.js"
+            ],
+            "c/createAccount": [
+                "createAccount/createAccount.js"
+            ],
+            "c/createCaseLghtWebCmp": [
+                "createCaseLghtWebCmp/createCaseLghtWebCmp.js"
+            ],
+            "c/fetchUpdateDeleteRecord": [
+                "fetchUpdateDeleteRecord/fetchUpdateDeleteRecord.js"
+            ],
+            "c/helloWebComponent": [
+                "helloWebComponent/helloWebComponent.js"
+            ],
             "c/helloWorld": [
                 "helloWorld/helloWorld.js"
+            ],
+            "c/lightningDataablRowAction": [
+                "lightningDataablRowAction/lightningDataablRowAction.js"
+            ],
+            "c/lwcCreateCase": [
+                "lwcCreateCase/lwcCreateCase.js"
+            ],
+            "c/rowActionDatatable": [
+                "rowActionDatatable/rowActionDatatable.js"
+            ],
+            "c/simpleAccCreate": [
+                "simpleAccCreate/simpleAccCreate.js"
+            ],
+            "c/SearchInTable": [
+                "SearchInTable/SearchInTable.js"
+            ],
+            "c/searchInTable": [
+                "searchInTable/searchInTable.js"
             ]
         }
     },

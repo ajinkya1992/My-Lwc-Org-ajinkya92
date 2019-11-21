@@ -1,0 +1,145 @@
+<template>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            }
+            
+            .lgc-bg {
+                background-color: rgb(242, 242, 242);
+            }
+            
+            .lgc-bg-inverse {
+                background-color: rgb(22, 50, 92);
+            }
+            
+</style>
+
+
+
+<template if:true={accountList.data}>
+        <div class="container">                               
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>   
+                        <th>Sr No</th>
+                        <th>Account Name</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <template  for:each={accountList.data} for:item="eachOpportunity" for:index="indexVar">
+                            <tr key={eachOpportunity.Id}>    
+                                <td>{indexVar}</td>                            
+                                <td>{eachOpportunity.Name}</td>
+                                <td>{eachOpportunity.Phone}</td>
+                            
+                                <td><lightning-input id={eachOpportunity.Id} type="checkbox" onchange={onAccCheck}></lightning-input></td>
+                            </tr>
+                    </template>                       
+                    </tbody>
+                </table>
+        </div>                
+</template>
+
+<center><lightning-button id="showContactBtn" class="" label="Show Contact" icon-position="center" icon-name="utility:adduser" onclick={onShowContactClick}></lightning-button></center> 
+</br></br>
+<template if:true={newContacts}>
+        <div class="container">                               
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>   
+                        <th>Sr No</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <template  for:each={newContacts} for:item="cont" for:index="indexVar">
+                            <tr key={cont.Id}>    
+                                <td>{indexVar}</td>                            
+                                <td>{cont.FirstName}</td>
+                                <td>{cont.LastName}</td>
+                                <td><lightning-input id={cont.Id} type="radio" name="radio" onchange={onConCheck}></lightning-input></td>
+                            </tr>
+                    </template>                       
+                    </tbody>
+                </table>
+        </div>                
+</template> 
+</br></br>
+<center>   <lightning-button id="showBookingBtn" class="" label="Show Booking" icon-position="center" icon-name="utility:adduser" onclick={onShowBookingClick}></lightning-button></center>
+</br></br>
+<!--
+<template if:true={newBookings}>
+<div class="container">                               
+       <table class="table table-bordered">
+           <thead>
+           <tr>   
+               <th>Sr No</th>
+               <th>Booking Name</th>
+               <th>Description</th>
+               <th>Amount</th>
+               <th>Action</th>
+               <th>Total Amount</th>
+               <th>Delete</th>
+               <th class="slds-text-title_caps" scope="col">
+                <button class="slds-button slds-button_brand" onclick={addbooking} >Add Row</button>
+          </th> 
+           </tr>
+           </thead>
+           <tbody>
+               <template  for:each={newBookings} for:item="eachOpportunity" for:index="indexVar">
+                   <tr key={eachOpportunity.Id}>    
+                       <td>{indexVar}</td>                            
+                       <td> <lightning-input  value={eachOpportunity.Contact__r.Name} if:true={eachOpportunity}  data-field="Name"></lightning-input></td>
+                       <td> <lightning-input  value={eachOpportunity.Description__c} if:true={eachOpportunity}   data-field="Description"></lightning-input></td>
+                       <td> <lightning-input  value={eachOpportunity.Amount__c} if:true={eachOpportunity}   data-field="Amount" readonly></lightning-input></td>
+                       <td><lightning-input id={eachOpportunity.Id} type="checkbox" name={indexVar} onchange={onBookingActionCheck}></lightning-input></td>
+                       <td><lightning-input  value={eachOpportunity.Calculated__c} if:true={eachOpportunity}   data-field="Total_Amount" readonly></lightning-input></td>
+                       <td><lightning-button label="Delete" icon-position="center" icon-name="utility:adduser" onclick={onDeleteBookingClick}></lightning-button></td>
+                   </tr>
+           </template>                       
+           </tbody>
+       </table>
+</div>                
+</template> -->
+
+<div class="slds-p-around_medium lgc-bg" style="height: 300px;">
+    <lightning-datatable
+            key-field="id"
+            data={data}
+            columns={columns}
+            onrowaction={handleRowAction}
+
+                onrowselection={getSelectedName}
+                enable-infinite-loading
+                onloadmore={loadMoreData}
+              
+                is-loading={tableLoadingState}
+                onsave={handleSave}
+                draft-values={draftValues}
+                onsort={updateColumnSorting}
+         >
+    </lightning-datatable>
+</div>
+
+</template>

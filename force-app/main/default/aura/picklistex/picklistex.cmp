@@ -1,0 +1,12 @@
+<aura:component controller="PickControll"  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="options" type="List" />
+     <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="selectedValue" type="String" default="Red"/>
+    <aura:handler name="init" value="{!this}" action="{!c.loadOptions}" />
+    <lightning:select name="mySelect" label="Select a color:" aura:id="mySelect" onchange="{!c.onChange }"  >
+         <aura:iteration items="{!v.options}" var="item">
+            <option text="{!item.Name}" value="{!item.Name}" />
+        </aura:iteration>
+    </lightning:select>
+</aura:component>

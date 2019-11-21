@@ -1,0 +1,12 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+ <aura:attribute name="item" type="Camping_Item__c" required="true" default ='test' />
+     <lightning:formattedNumber value="{!v.item.Price__c}" style="currency"/>
+    <lightning:input type="toggle"                            
+                                            
+                     checked="{!v.item.Packed__c}" />
+    <ui:outputText value="{!v.item.Name}"/>
+    <ui:outputCheckbox value="{!v.item.Packed__c}"/>
+  
+    <ui:outputNumber value="{!v.item.Quantity__c}"/>	
+     <lightning:button label="Packed!" onclick="{!c.packItem}" disabled="{!(v.item.Packed__c) ? true : false}" />
+</aura:component>

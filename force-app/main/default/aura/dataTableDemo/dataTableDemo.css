@@ -1,0 +1,47 @@
+.THIS .slds-input {
+  
+    width: min-content;
+}
+
+.THIS .dataTables_wrapper .dataTables_length {
+   
+    display: none;
+}
+
+.THIS .dataTables_wrapper .dataTables_filter {
+     float: left; 
+    text-align: left;
+}
+
+.THIS .dataTables_wrapper .dataTables_info {
+  
+     display: none;
+}
+
+.THIS .dataTables_wrapper .dataTables_paginate {
+    display: none;
+}
+
+
+.THIS .sorting_desc {
+    display: none;
+}
+.THIS .sorting_asc {
+    display: none;
+}
+.THIS .sorting {
+    display: none;
+}
+
+/*.THIS .dataTable thead .sorting_asc{
+    
+    background-repeat: no-repeat;
+    background-position: inherit;
+    cursor: pointer;
+   
+}
+.THIS .dataTable thead .sorting_desc {
+   background-repeat: no-repeat;
+    background-position: inherit;
+    cursor: pointer;
+}*/

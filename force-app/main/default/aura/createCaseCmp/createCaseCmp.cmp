@@ -1,0 +1,148 @@
+<aura:component controller="CreateCase" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <!-- <ltng:require scripts="{!join(','
+                           )}" styles="{!join(',', 
+                                       $Resource.sldsCSS + '/styles/salesforce-lightning-design-system.css', 
+                                       $Resource.sldsCSS + '/styles/salesforce-lightning-design-system.min.css')}"
+                  afterScriptsLoaded="{!c.afterScriptLoaded}"/>-->
+    <aura:attribute name="recordId" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="options" type="List[]" />
+    <aura:attribute name="newCase" type="Case" default="{'sobjectType': 'Case',
+                                                        'SuppliedName':'',
+                                                        'SuppliedEmail':'',
+                                                        'SuppliedCompany':'',
+                                                        'Phone':'',
+                                                        'Priority':'',
+                                                        'Subject':'',
+                                                        'Description':''  	
+                                                        }"/>
+    
+    
+    
+    <div class="slds-col slds-col--padded slds-p-top--large" >
+        
+            
+            <fieldset class="slds-box slds-theme--default slds-container--large" style="border: 3px solid rgb(146, 141, 139); margin:0 auto">
+                
+                <div class="slds-grid"> 
+                    <div class="slds-grid slds-size_1-of-12">
+                    </div>
+                    <div class="slds-grid slds-size_10-of-12">
+                        
+                        <div class="slds-size_5-of-12">
+                              <label class="slds-form-element__label" for="form-element-03">
+                                <abbr class="slds-required" title="required">* </abbr>Name</label>
+                            <lightning:input variant = "label-hidden" type="text" aura:Id="CaseNameField" value="{!v.newCase.SuppliedName}"  label="Name" />
+                             <div style="color: red;font-size: smaller;" aura:Id="caseNamevl" class="slds-hidden" >Please Enter Supplied Name</div>
+                        </div>
+                        <div class="slds-size_2-of-12">
+                        </div>
+                        <div class="slds-size_5-of-12">
+                              <label class="slds-form-element__label" for="form-element-03">
+                                <abbr class="slds-required" title="required">* </abbr>Email</label>
+                            <lightning:input variant = "label-hidden" type="email" aura:Id="CaseEmailField" value="{!v.newCase.SuppliedEmail}" label="Email"/>  
+                             <div style="color: red;font-size: smaller;" aura:Id="CaseEmail" class="slds-hidden" >Please Enter Email</div>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-size_1-of-12">
+                    </div>
+                </div><br/>
+                <div class="slds-grid">
+                    <div class="slds-grid slds-size_1-of-12">
+                    </div>
+                    <div class="slds-grid slds-size_10-of-12">
+                        <div class="slds-size_5-of-12">
+                            <label class="slds-form-element__label" for="form-element-03">
+                                <abbr class="slds-required" title="required">* </abbr>Company</label>
+                            <lightning:input variant = "label-hidden" type="text" aura:Id="CaseCompanyField" value="{!v.newCase.SuppliedCompany}" label="Company"/>
+                             <div style="color: red;font-size: smaller;" aura:Id="CaseCompany" class="slds-hidden" >Please Enter Company</div>
+                        </div>
+                        <div class="slds-size_2-of-12">
+                        </div>
+                        <div class="slds-size_5-of-12">
+                            <lightning:input type="number" aura:Id="CasePhoneField" value="{!v.newCase.Phone}" label="Phone"/>
+                            
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-size_1-of-12">
+                    </div>
+                </div>
+                
+                <hr  style="height:1px;border:none;color:#333;background-color:#333;"/>  
+                
+                <div class="slds-grid">
+                    <div class="slds-grid slds-size_1-of-12">
+                    </div>
+                    <div class="slds-grid slds-size_10-of-12">
+                        
+                        <div class="slds-size_5-of-12">
+                             <label class="slds-form-element__label" for="form-element-03">
+                                <abbr class="slds-required" title="required">* </abbr>Priority</label>
+                            <lightning:combobox variant = "label-hidden"  name="Priority" options="{!v.options}" placeholder="--Select--" aura:Id="CaseSIField" value="{!v.newCase.Priority}"  label="Priority"/>
+                             <div style="color: red;font-size: smaller;" aura:Id="CaseSIF" class="slds-hidden" >Please Select Priority</div>
+                        </div>
+                        <div class="slds-size_2-of-12">
+                        </div>
+                        
+                        <div class="slds-size_5-of-12">
+                            
+                        </div> 
+                    </div>
+                    <div class="slds-grid slds-size_1-of-12">
+                    </div>
+                </div>
+                
+                <hr style="height:1px;border:none;color:#333;background-color:#333;"/>
+                
+                <div class="slds-grid">
+                    <div class="slds-grid slds-size_1-of-12">
+                    </div>
+                    <div class="slds-grid slds-size_10-of-12">
+                        <div class="slds-size_12-of-12">
+                             <label class="slds-form-element__label" for="form-element-03">
+                                <abbr class="slds-required" title="required">* </abbr>Subject</label>
+                            <lightning:input  variant = "label-hidden" type="text" aura:Id="CaseSubField" value="{!v.newCase.Subject}" label="Subject"/>
+                             <div style="color: red;font-size: smaller;" aura:Id="CaseSub" class="slds-hidden" >Please Enter Subject</div>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-size_1-of-12">
+                    </div>
+                </div><br/>  
+                
+                <div class="slds-grid">
+                    <div class="slds-grid slds-size_1-of-12">
+                    </div>
+                    <div class="slds-grid slds-size_10-of-12">
+                        <div class="slds-size_12-of-12">
+                             <label class="slds-form-element__label" for="textarea-id-01">Description</label>
+                            <lightning:textarea name="myTextArea"  aura:Id="CaseDescField" value="{!v.newCase.Description}"
+                                                 maxlength="300" />
+                            
+                        <!--     <ui:inputTextArea  class="slds-input slds-box" aura:Id="CaseField" value="{!v.newCase.Description}" label="Description"/>  -->
+                            
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-size_1-of-12">
+                    </div>
+                </div><br/>  
+                
+                
+                <div class="slds-grid">
+                    <div class="slds-grid slds-size_1-of-12">
+                    </div>
+                    <div class="slds-size_10-of-12" style="text-align: center;">
+                        <input type="submit"  name="Submit"  value="Submit" onclick="{!c.saveCase}"  class="slds-input" style="width: fit-content; color: black; display:inline-block; width:auto;"/>
+                    	
+                    </div>
+                    <div class="slds-grid slds-size_1-of-12">
+                    </div>
+                </div> 
+                
+                
+            </fieldset>
+            
+        </div>
+        
+   
+    
+</aura:component>

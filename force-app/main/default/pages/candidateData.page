@@ -1,0 +1,5 @@
+<apex:page standardController="Candidate__c" docType="html-5.0" title="Webmerge Negotiation Memo: {!Candidate__c.Name}">
+
+<webm:WebmergeWizard record="{!Candidate__c}" />
+
+</apex:page>

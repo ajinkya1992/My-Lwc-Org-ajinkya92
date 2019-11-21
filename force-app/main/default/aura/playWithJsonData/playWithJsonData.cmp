@@ -1,0 +1,99 @@
+<aura:component controller="DatatablAcc" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="DemoList" type="List" />
+    <aura:attribute name="carList" type="List" />
+    <aura:attribute name="Cnavus" type="List" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="recordId" type="String" />
+    
+    
+    <div class="slds-card__body">
+        <lightning:recordEditForm 
+                                  objectApiName="Account">
+            
+            <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_fixed-layout" role="grid">
+                
+                <thead>
+                    <th scope="col"> 
+                        Sr. No
+                    </th>
+                    <th scope="col">
+                        Name
+                    </th>
+                    <th scope="col">
+                        status
+                    </th>
+                    
+                    <th scope="col">
+                        Zone
+                    </th>
+                    <th class="slds-text-title_caps" scope="col">
+                        <lightning:button variant="success" label="Add Row" title="Success" onclick="{!c.addbooking}"/>
+                        
+                    </th>
+                </thead> 
+                <tbody>
+                    <aura:iteration items="{!v.carList}" var="headObj" indexVar="index">
+                        <aura:iteration items="{!headObj.Country}" var="headObj1" indexVar="index">
+                            <tr >
+                                <td >
+                                    {!index+1}
+                                </td>
+                                <td class="hide-label">
+                                    
+                                    <lightning:inputField variant="label-hidden" fieldName="Name" value="{!headObj.Name}"/>
+                                    
+                                </td>
+                                
+                                
+                                
+                                <td class="hide-label">
+                                    <lightning:layoutItem size="12" padding="around-small">    
+                                        <lightning:select name="controllerFld"
+                                                          value=""
+                                                          label="Region"
+                                                          onchange="{!c.onControllerFieldChange}">
+                                            <aura:iteration items="{!headObj1.city}" var="val">
+                                                <option value="{!val}">{!val}</option>
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </lightning:layoutItem>
+                                </td>
+                                
+                                <td> 
+                                    <button  class="slds-button slds-button_destructive" id="{!index}" onclick="{!c.removeRow}"> Delete </button>
+                                    
+                                </td>
+                                
+                            </tr>
+                            
+                        </aura:iteration><!-- <lightning:inputField fieldName="Project_LCDB__c" value="{!obj.Projects.Id}"/>-->
+                    </aura:iteration>
+                </tbody> 
+            </table>
+            <lightning:button variant="success" label="Save" title="Success" onclick="{!c.handleSave }"/>
+            
+        </lightning:recordEditForm>
+        
+        <aura:iteration items="{!v.carList}" var="headObj" indexVar="index">
+            <aura:iteration items="{!headObj.Country}" var="headObj1" indexVar="index">
+                <div class="navbar">
+                    
+                    <div class="subnav">
+                        <button class="subnavbtn">{!headObj1.state} <i class="fa fa-caret-down"></i></button>
+                        <div class="subnav-content">
+                            <a href="#company">{!headObj1.city}</a>
+                        </div>
+                    </div> 
+                    
+                </div>
+            </aura:iteration>
+        </aura:iteration>
+        
+    </div>
+    
+    
+    
+    
+    
+</aura:component>

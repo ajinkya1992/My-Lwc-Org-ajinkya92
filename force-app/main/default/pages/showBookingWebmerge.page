@@ -1,0 +1,5 @@
+<apex:page standardController="Show_Booking__c" docType="html-5.0" title="Webmerge Show Booking: {!Show_Booking__c.Name}">
+
+    <webm:WebmergeWizard record="{!Show_Booking__c}" />
+    
+</apex:page>

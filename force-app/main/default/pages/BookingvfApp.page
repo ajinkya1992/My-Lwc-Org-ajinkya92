@@ -1,0 +1,22 @@
+<apex:page showHeader="false"  >
+      <apex:includeLightning />
+    
+
+   <div id="myDivId"> 
+    </div>
+ 
+    <script>
+      
+ 
+        $Lightning.use("c:BookingappSite", function() {
+        $Lightning.createComponent(
+            "c:BookingTableCmp",
+            {  },
+            "myDivId",
+            function(cmp) {
+               
+            });
+        });
+     </script>
+
+</apex:page>
